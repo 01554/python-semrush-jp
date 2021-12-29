@@ -30,9 +30,9 @@ Python-Semrush is a wrapper around the `SEMrush API`_ version 3.0.
 
 Thanks to `tomlinton`_ and `storerjeremy`_ for the basis of this package.
 
-.. _`SEMrush API`: http://www.semrush.com/api-documentation/
-.. _`tomlinton`: https://github.com/tomlinton
-.. _`storerjeremy`: https://github.com/storerjeremy
+- `SEMrush API`: http://www.semrush.com/api-documentation/
+- `tomlinton`: https://github.com/tomlinton
+- `storerjeremy`: https://github.com/storerjeremy
 
 Installation
 ============
