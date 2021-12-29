@@ -1,17 +1,20 @@
-==============
-python-semrush-jp
-==============
+# python-semrush-jp
+---
+
 主に以下の2点を修正
 
 - decode の変更
 
 semurash api から出力される日本語はutf-8で変換されているが、それをunicode_escapeでdecodeしているため
 
+"ぎっとはぶ" が
+
 'ã\x81\x8eã\x81£ã\x81¨ã\x81¯ã\x81¶'
 
-"ぎっとはぶ"が 上記ようなデータになってしまう。
+上記ようなデータになってしまう。
 
 これをutf-8でdecodeするように修正。
+
 
 - requests の競合
 
@@ -21,11 +24,10 @@ semurash api から出力される日本語はutf-8で変換されているが�
 
 
 
+---
 
-
-==============
 python-semrush
-==============
+---
 
 Python-Semrush is a wrapper around the `SEMrush API`_ version 3.0.
 
