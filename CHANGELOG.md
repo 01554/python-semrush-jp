@@ -1,3 +1,8 @@
+# Release 0.2.0 - Wed 12 29 14:54:01 JST 2021
+
+- Rename python_semrush -> python_semrush_jp
+
+
 # Release 0.1.5 - Wed 12 29 14:02:01 JST 2021
 
 - fixed minor bug.
