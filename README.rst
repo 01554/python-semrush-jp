@@ -3,15 +3,19 @@ python-semrush-jp
 ==============
 主に以下の2点を修正
 
-・ decode の変更
+ - decode の変更
 semurash api から出力される日本語はutf-8で変換されているが、それをunicode_escapeでdecodeしているため
+
 'ã\x81\x8eã\x81£ã\x81¨ã\x81¯ã\x81¶'
 
 ぎっとはぶ が 上記ようなデータになってしまう。
+
 これをutf-8でdecodeするように修正。
 
-・requests の競合
+- requests の競合
+
 メンテナンスされていないために requirements の requests が 2.8限定になっている。
+
 このため他のライブラリと衝突してしまい入らないことがあったので修正
 
 
