@@ -41,13 +41,11 @@ You can install python-semrush from github.
 
 From github;
 
-.. code-block:: bash
 
-    $ pip install git+https://github.com/sishinami/python-semrush.git
+    $ pip install git+https://github.com/sishinami/python-semrush-jp.git
 
 Usage
 =====
-.. code-block:: python
 
     from python_semrush.semrush import SemrushClient
     client = SemrushClient(key='your_semrush_api_key')

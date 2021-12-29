@@ -17,7 +17,7 @@ import os
 import sys
 import codecs
 
-NAME = 'python-semrush'
+NAME = 'python-semrush-jp'
 entrypoints = {}
 extra = {}
 
