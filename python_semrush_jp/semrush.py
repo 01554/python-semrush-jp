@@ -83,7 +83,7 @@ class SemrushClient(object):
 
         for line in lines[1:]:
             result = {}
-            for i, datum in enumerate(line.split('";"')):
+            for i, datum in enumerate(line.split(';')):
                 result[columns[i]] = datum.strip('"\n\r\t')
             results.append(result)
 
