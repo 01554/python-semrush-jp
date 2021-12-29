@@ -14,6 +14,8 @@ semurash api から出力される日本語はutf-8で変換されているが�
 
 これをutf-8でdecodeするように修正。
 
+- 12/29追記
+export_decode ってのがあるから これを１にしてunicode_escape するのが本来の使い方っぽい？
 
 #### requests の競合
 
