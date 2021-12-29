@@ -3,7 +3,8 @@ python-semrush-jp
 ==============
 主に以下の2点を修正
 
- - decode の変更
+- decode の変更
+
 semurash api から出力される日本語はutf-8で変換されているが、それをunicode_escapeでdecodeしているため
 
 'ã\x81\x8eã\x81£ã\x81¨ã\x81¯ã\x81¶'
