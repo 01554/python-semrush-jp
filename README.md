@@ -2,7 +2,7 @@
 
 主に以下の2点を修正
 
-- decode の変更
+#### decode の変更
 
 semurash api から出力される日本語はutf-8で変換されているが、それをunicode_escapeでdecodeしているため
 
@@ -15,7 +15,7 @@ semurash api から出力される日本語はutf-8で変換されているが�
 これをutf-8でdecodeするように修正。
 
 
-- requests の競合
+#### requests の競合
 
 メンテナンスされていないために requirements の requests が 2.8限定になっている。
 
