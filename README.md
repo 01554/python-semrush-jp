@@ -1,5 +1,4 @@
 # python-semrush-jp
----
 
 主に以下の2点を修正
 
