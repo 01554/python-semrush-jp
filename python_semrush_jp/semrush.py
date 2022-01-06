@@ -6,6 +6,9 @@ from python_semrush_jp.errors import *
 SEMRUSH_API_URL = 'http://api.semrush.com/'
 SEMRUSH_ASNS_API_URL = 'http://api.asns.backend.semrush.com/'
 SEMRUSH_API_V1_URL = 'http://api.semrush.com/analytics/v1/'
+CHECK_API_UNITS_BALANCE = 'http://ja.semrush.com/users/countapiunits.html'
+
+
 
 REGIONAL_DATABASES = {
     'google.com': 'us',
@@ -47,6 +50,7 @@ class SemrushClient(object):
             raise SemRushKeyError('A Semrush key must be provided')
 
         self.api_url = SEMRUSH_API_URL
+        self.api_units_url = CHECK_API_UNITS_BALANCE
         self.key = key
 
     @staticmethod
@@ -72,6 +76,10 @@ class SemrushClient(object):
             return response.content
         else:
             raise BaseSemrushError(response.content)
+
+    def check_api_units_balance(self):
+        param = { 'key' :  self.key }
+        response = requests.get(self.api_units_url, params=param)
 
     @staticmethod
     def parse_response(data):
