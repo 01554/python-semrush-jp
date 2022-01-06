@@ -80,6 +80,11 @@ class SemrushClient(object):
     def check_api_units_balance(self):
         param = { 'key' :  self.key }
         response = requests.get(self.api_units_url, params=param)
+        if response.status_code == 200:
+            return response.content
+        else:
+            raise BaseSemrushError(response.content)
+
 
     @staticmethod
     def parse_response(data):
