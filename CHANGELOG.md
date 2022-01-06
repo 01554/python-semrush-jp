@@ -1,3 +1,8 @@
+# Release 0.2.1 - Thu 01 06 12:44:01 JST 2022
+
+- check_api_units_balance（日本用） を追加、他国版は知らない
+
+
 # Release 0.2.0 - Wed 12 29 14:54:01 JST 2021
 
 - Rename python_semrush -> python_semrush_jp
