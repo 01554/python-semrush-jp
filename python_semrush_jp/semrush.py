@@ -81,7 +81,7 @@ class SemrushClient(object):
         param = { 'key' :  self.key }
         response = requests.get(self.api_units_url, params=param)
         if response.status_code == 200:
-            return response.content
+            return int(response.content.decode('utf-8'))
         else:
             raise BaseSemrushError(response.content)
 
