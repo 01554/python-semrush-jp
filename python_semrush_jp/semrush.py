@@ -47,7 +47,7 @@ class SemrushClient(object):
 
     def __init__(self, key):
         if not key:
-            raise SemRushKeyError('A Semrush key must be provided')
+            raise SemrushKeyError('A Semrush key must be provided')
 
         self.api_url = SEMRUSH_API_URL
         self.api_units_url = CHECK_API_UNITS_BALANCE
@@ -58,7 +58,7 @@ class SemrushClient(object):
         if search_engine in REGIONAL_DATABASES:
             return REGIONAL_DATABASES[search_engine]
         else:
-            raise SemRushRegionalDatabaseError('%s - is not an accepted search engine.' % search_engine)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted search engine.' % search_engine)
 
     # Report producing methods
     def produce(self, report_type, **kwargs):
@@ -75,7 +75,7 @@ class SemrushClient(object):
         if response.status_code == 200:
             return response.content
         else:
-            raise BaseSemrushError(response.content)
+            raise SemrushAPIError(response.content)
 
     def check_api_units_balance(self):
         param = { 'key' :  self.key }
@@ -83,7 +83,7 @@ class SemrushClient(object):
         if response.status_code == 200:
             return int(response.content.decode('utf-8'))
         else:
-            raise BaseSemrushError(response.content)
+            raise SemrushAPIError(response.content)
 
 
     @staticmethod
@@ -133,7 +133,7 @@ class SemrushClient(object):
         - export_columns: Dn, Rk, Or, Ot, Oc, Ad, At, Ac
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('domain_rank', domain=domain, database=database, **kwargs)
 
     def domain_rank_history(self, domain, database, **kwargs):
@@ -155,7 +155,7 @@ class SemrushClient(object):
         - display_sort: dt_asc, dt_desc
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('domain_rank_history', domain=domain, database=database, **kwargs)
 
     def rank_difference(self, database, **kwargs):
@@ -177,7 +177,7 @@ class SemrushClient(object):
             cm_desc
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('rank_difference', database=database, **kwargs)
 
     def rank(self, database, **kwargs):
@@ -197,7 +197,7 @@ class SemrushClient(object):
         - export_columns: Dn, Rk, Or, Ot, Oc, Ad, At, Ac
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('rank', database=database, **kwargs)
 
     # Domain Reports
@@ -221,7 +221,7 @@ class SemrushClient(object):
         - display_filter:
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('domain_organic', domain=domain, database=database, **kwargs)
 
     def domain_adwords(self, domain, database, **kwargs):
@@ -244,7 +244,7 @@ class SemrushClient(object):
         - display_filter:
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('domain_adwords', domain=domain, database=database, **kwargs)
 
     def domain_adwords_unique(self, domain, database, **kwargs):
@@ -265,7 +265,7 @@ class SemrushClient(object):
         - display_filter:
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('domain_adwords_unique', domain=domain, database=database, **kwargs)
 
     def domain_organic_organic(self, domain, database, **kwargs):
@@ -286,7 +286,7 @@ class SemrushClient(object):
         - display_sort: np_desc, cr_desc
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('domain_organic_organic', domain=domain, database=database, **kwargs)
 
     def domain_adwords_adwords(self, domain, database, **kwargs):
@@ -307,7 +307,7 @@ class SemrushClient(object):
         - display_sort: np_desc, cr_desc
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('domain_adwords_adwords', domain=domain, database=database, **kwargs)
 
     def domain_adwords_historical(self, domain, database, **kwargs):
@@ -328,7 +328,7 @@ class SemrushClient(object):
         - display_filter:
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('domain_adwords_historical', domain=domain, database=database, **kwargs)
 
     def domain_domains(self, domains, database, **kwargs):
@@ -354,7 +354,7 @@ class SemrushClient(object):
         Note: Refer to SEMrush API documentation for format of domains
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('domain_domains', domains=domains, database=database, **kwargs)
 
     def domain_shopping(self, domain, database, **kwargs):
@@ -376,7 +376,7 @@ class SemrushClient(object):
         - display_filter:
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('domain_shopping', domain=domain, database=database, **kwargs)
 
     def domain_shopping_unique(self, domain, database, **kwargs):
@@ -397,7 +397,7 @@ class SemrushClient(object):
         - display_filter:
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('domain_shopping_unique', domain=domain, database=database, **kwargs)
 
     def domain_shopping_shopping(self, domain, database, **kwargs):
@@ -419,7 +419,7 @@ class SemrushClient(object):
         - display_filter:
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('domain_shopping_shopping', domain=domain, database=database, **kwargs)
 
     # Keyword Reports
@@ -455,7 +455,7 @@ class SemrushClient(object):
         - export_columns: Ph, Nq, Cp, Co, Nr
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('phrase_this', phrase=phrase, database=database, **kwargs)
 
     def phrase_organic(self, phrase, database, **kwargs):
@@ -474,7 +474,7 @@ class SemrushClient(object):
         - export_columns: Dn, Ur
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('phrase_organic', phrase=phrase, database=database, **kwargs)
 
     def phrase_adwords(self, phrase, database, **kwargs):
@@ -493,7 +493,7 @@ class SemrushClient(object):
         - export_columns: Dn, Ur
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('phrase_adwords', phrase=phrase, database=database, **kwargs)
 
     def phrase_related(self, phrase, database, **kwargs):
@@ -516,7 +516,7 @@ class SemrushClient(object):
         - display_filter:
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('phrase_related', phrase=phrase, database=database, **kwargs)
 
     def phrase_adwords_historical(self, phrase, database, **kwargs):
@@ -536,7 +536,7 @@ class SemrushClient(object):
         - export_columns: Dn, Dt, Po, Ur, Tt, Ds, Vu, At, Ac, Ad
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('phrase_adwords_historical', database=database, **kwargs)
 
     def phrase_fullsearch(self, phrase, database, **kwargs):
@@ -558,7 +558,7 @@ class SemrushClient(object):
         - display_filter:
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('phrase_fullsearch', phrase=phrase, database=database, **kwargs)
 
     def phrase_kdi(self, phrase, database, **kwargs):
@@ -575,7 +575,7 @@ class SemrushClient(object):
         - export_columns: Ph, Kd
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('phrase_kdi', phrase=phrase, database=database, **kwargs)
 
     # URL Reports
@@ -596,7 +596,7 @@ class SemrushClient(object):
         - export_columns: Ph, Po, Nq, Cp, Co, Tr, Tc, Nr, Td
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('url_organic', url=url, database=database, **kwargs)
 
     def url_adwords(self, url, database, **kwargs):
@@ -616,7 +616,7 @@ class SemrushClient(object):
         - export_columns: Ph, Po, Nq, Cp, Co, Tr, Tc, Nr, Td, Tt, Ds
         """
         if database not in REGIONAL_DATABASES.values():
-            raise SemRushRegionalDatabaseError('%s - is not an accepted database.' % database)
+            raise SemrushRegionalDatabaseError('%s - is not an accepted database.' % database)
         return self.produce('url_adwords', url=url, database=database, **kwargs)
 
     # Display Advertising Reports
