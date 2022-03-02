@@ -10,11 +10,13 @@ class SemrushAPIError(BaseSemrushError):
     def __init__(self, error_payload: bytes):
         super().__init__(error_payload)
         text = error_payload.decode("UTF-8")
-        pref, message = text.split(" :: ")
-        code = int(pref.split(" ")[1])
+        phrases = text.split(" :: ")
+        prefs = phrases[:-1]
+        message = phrases[-1]
+        codes = [int(pref.split(" ")[1]) for pref in prefs]
         self.text = text
         self.message = message
-        self.code = code
+        self.codes = codes
 
 
 class SemrushKeyError(BaseSemrushError):
